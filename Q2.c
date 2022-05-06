@@ -14,7 +14,7 @@ int main(){
     for(int i = 0 ; i < n ; i++){
         printf("%d " , arr[i]);
     }
-    int maxNum = arr[0];
+    int maxNum = 0;
     int prevMaxNum = 0;
     for(int i = 0 ; i < n ; i++){
         if(arr[i] > maxNum){
