@@ -13,7 +13,8 @@ void main()
      }
      printf("Enter the location where you want to delete");
      scanf("%d" , &location);
-
+    //logic -> jis location pe delete karna hai vahan pe jao aur fir uske aage right side me jitne bhi elements
+    //bache hain unhe ek ek position left shift kardo.
      for(int i = location - 1 ; i < n ; i++){
         arr[i] = arr[i+1];
      }
