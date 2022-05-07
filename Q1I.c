@@ -48,10 +48,7 @@ int main(){
             // printf("\nfor value of %d , currentdigit in number %d is %d  " , i , arr[j] , currentDigit);
             freqArr[currentDigit]+=1;
         }
-    //     for( j = 0 ; j < 10 ; j++){
-    //     printf("freq %d  " , freqArr[j]);
-    // }
-    //         printf("\n");
+   
 
         // //create the cumulative sum array.
         for (int k = 0; k < 10; k++)
@@ -59,10 +56,7 @@ int main(){
             sum+=freqArr[k];
             sumArr[k] = sum;
         }
-        // for( j = 0 ; j < 10 ; j++){
-        // printf("sum %d  " , sumArr[j]);
-        //  }
-        //     printf("\n");
+       
         
             for(int l = size-1 ; l >= 0 ; l--){
             currentDigit = (int) ( arr[l] / pow(10 , i) ) % 10;
@@ -70,12 +64,19 @@ int main(){
             sumArr[currentDigit]-=1;
             outputArr[sumArr[currentDigit]] = arr[l];
         }
+
+        for(j = 0 ; j < size ; j++){
+            arr[j] = outputArr[j];
+        }
+        for(j = 0 ; j < size ; j++){
+            outputArr[j] = 0;
+        }
         
     }
 
     printf("\nOutput array is ");
     for(int i = 0 ; i < size ; i++){
-        printf("%d  " , outputArr[i]);
+        printf("%d  " , arr[i]);
     }
 
     return 0;
