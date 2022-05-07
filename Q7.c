@@ -39,7 +39,7 @@ int main(){
     for(i=0;i<6;i++){
         printf("%d " , outputArr[i]);
     }
-        //till now count sort was being executed. Array is not sorted.
+        //till now count sort was being executed. Array is now sorted.
 
     printf("\nPairs that add up to %d are " , targetSum);
     while(left < right){
