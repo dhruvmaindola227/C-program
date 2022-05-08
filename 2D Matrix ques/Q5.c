@@ -2,8 +2,6 @@
 
 int main()
 {
-
-    // Multiply 2d matrix
     int r1, c1, r2, c2;
     printf("Enter number of row of 1st array => ");
     scanf("%d", &r1);
