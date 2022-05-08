@@ -2,5 +2,5 @@
 **DFS LAB Questions and other C programs done in DFS CLASS**
 
 
-**Q1 i) -> Radix sort is not done yet. Rest all are here.**
+**//2D array questions arent here//.**
 
