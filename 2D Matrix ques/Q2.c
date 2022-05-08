@@ -31,7 +31,7 @@ int main(){
                    }
                }
         
-
+    printf("Multiplication matrix is\n");
     for(int row = 0 ; row < 2 ; row++){
         printf("\n");
             for(int col = 0 ; col < 2 ; col++){
