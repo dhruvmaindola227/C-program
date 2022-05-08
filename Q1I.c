@@ -34,7 +34,7 @@ int main(){
     }
     //basically run count sort numberOfDigitsInMax times.
     for (int i = 0; i < numberOfDigitsInMax; i++){  
-         
+        //for each iteration we want all these to be empty , basically initialized to zero. 
          sum = 0;
         for(j=0;j<10;j++){
             freqArr[j]=0;
@@ -57,17 +57,20 @@ int main(){
             sumArr[k] = sum;
         }
        
-        
+            //store the values in the output array
             for(int l = size-1 ; l >= 0 ; l--){
             currentDigit = (int) ( arr[l] / pow(10 , i) ) % 10;
             // printf("\nfor value of %d , currentdigit in number %d is %d  " , i , arr[l] , currentDigit);
             sumArr[currentDigit]-=1;
             outputArr[sumArr[currentDigit]] = arr[l];
         }
-
+        //copy the values of the output arrays as we will take the output array as the new input for
+        //the next iteration , because for i = 0 we have sorted by the units place. then we want THAT
+        //UNITS PLACES SORTED ARRAY to be the new original array and sort THAT according to the tens place.
         for(j = 0 ; j < size ; j++){
             arr[j] = outputArr[j];
         }
+        //And set the output array to be empty again because the next iteration will store the new values.
         for(j = 0 ; j < size ; j++){
             outputArr[j] = 0;
         }
