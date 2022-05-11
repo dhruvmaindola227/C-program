@@ -24,10 +24,10 @@ void main(){
     int oddElements[countOfOdd];
     int evenElements[n - countOfOdd];
     for(int i = 0 ; i < n ; i++){
-           if (arr[i] % 2 != 0 && oddpointer < countOfOdd){ 
+           if (arr[i] % 2 != 0 ){ 
             oddElements[oddpointer++] = arr[i];
            }
-            else if (arr[i] % 2 == 0 && evenpointer < n - countOfOdd){
+            else if (arr[i] % 2 == 0){
             evenElements[evenpointer++] = arr[i];
                 }
     }
