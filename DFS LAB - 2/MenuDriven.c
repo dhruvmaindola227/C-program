@@ -95,7 +95,7 @@ void display()
         printf("%d -> ", temp->value);
         temp = temp -> next;
     }
-    printf("NULL\n");
+    printf("NULL\nLength of the linkedlist is %d \n" , size);
 }
 
 void insertAtBeginning(int value){
