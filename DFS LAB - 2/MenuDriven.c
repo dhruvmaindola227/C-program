@@ -19,6 +19,7 @@ void deleteAtPosition(int pos);
 int searchValue(int value);// returns the position of the value in the linkedlist.
 void main(){
     int choiceOfUser = 1;
+    int valueToSearch = -1;
     int nextChoice = 0;
     int position = 0;
     int value;
@@ -29,13 +30,18 @@ void main(){
     head = node;
     tail = head;
     size++;
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Quit");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Searching\n5 -> Quit");
     scanf("%d" , &choiceOfUser);
-    while(choiceOfUser <= 4){
-    if(choiceOfUser == 4){
+    while(choiceOfUser <= 5){
+    if(choiceOfUser == 5){
         return;
     }
-    if(choiceOfUser == 3){
+    else if(choiceOfUser == 4){
+        printf("What is the value that you want to search? ->  ");
+        scanf("%d" , &valueToSearch);
+        printf("The value %d was found at position number %d\n" , value , search(valueToSearch));
+    }
+    else if(choiceOfUser == 3){
         display();
     }
     else if(choiceOfUser == 1){
@@ -75,7 +81,7 @@ void main(){
         }
     }
 
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Quit");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Searching\n5 -> Quit");
     scanf("%d" , &choiceOfUser);
 
     }
@@ -176,3 +182,17 @@ void deleteAtPosition(int position){
     temp -> next = nextnode;
     size--;
 }
+
+int search(int value){
+    struct node *temp = head;
+    int position = 1;
+    while (temp != NULL)
+    {
+        if(temp -> value == value){
+            return position;
+        }
+        position++;
+        temp = temp -> next;
+    }
+}
+
