@@ -17,6 +17,7 @@ void deletetAtBeginning();
 void deleteAtLast();
 void deleteAtPosition(int pos);
 void reverse();
+void recursiveReverse(struct node *currnode);
 int searchValue(int value);// returns the position of the value in the linkedlist.
 void main(){
     int choiceOfUser = 1;
@@ -38,7 +39,9 @@ void main(){
         return;
     }
     else if (choiceOfUser == 5){
-        reverse();
+        // reverse();
+        recursiveReverse(head);
+        display();
     }
     else if(choiceOfUser == 4){
         printf("What is the value that you want to search? ->  ");
@@ -159,8 +162,8 @@ void deleteAtLast(){
     while(temp -> next -> next != NULL){
         temp = temp -> next;
     }
-    tail = temp;
     free(temp -> next);
+    tail = temp;
     tail -> next = NULL;
     size--;
 }
@@ -203,6 +206,9 @@ int search(int value){
 
 
 void reverse(){
+    if (size < 2) {
+            return;
+        }
     struct node *present = head;
     struct node * previous  = NULL;
     struct node *nextnode = present -> next;
@@ -217,4 +223,19 @@ void reverse(){
     head = previous;
     display();
 }
+
+void recursiveReverse(struct node *currnode){
+    if (size < 2) {
+            return;
+        }
+    if(currnode == tail){
+        head = tail;
+        return;
+    }
+    recursiveReverse(currnode -> next);
+    tail -> next = currnode;
+    tail = currnode;
+    tail -> next = NULL;
+}
+
 
