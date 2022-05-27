@@ -32,7 +32,7 @@ void main(){
     head = node;
     tail = head;
     size++;
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n\n");
     scanf("%d" , &choiceOfUser);
     while(choiceOfUser <= 5){
     if(choiceOfUser == 6){
@@ -46,7 +46,12 @@ void main(){
     else if(choiceOfUser == 4){
         printf("What is the value that you want to search? ->  ");
         scanf("%d" , &valueToSearch);
-        printf("The value %d was found at position number %d\n" , value , search(valueToSearch));
+        if(search(valueToSearch) != -1){
+        printf("The value %d was found at position number %d\n\n" , value , search(valueToSearch));
+        }else{
+            printf("Element not found in the linked list!!!\n\n");
+        }
+
     }
     else if(choiceOfUser == 3){
         display();
@@ -73,7 +78,7 @@ void main(){
         }
     }
     else{
-        printf("Press 1 for deleting a node at beginning\nPress 2 for deleting a node at ending\nPress 3 for deleting a node at a particular index");
+        printf("Press 1 for deleting a node at beginning\nPress 2 for deleting a node at ending\nPress 3 for deleting a node at a particular index  ");
         scanf("%d" , &nextChoice);
         if(nextChoice == 1){
             deleteAtBeginning();
@@ -82,13 +87,13 @@ void main(){
             deleteAtLast();
         }
         else{
-            printf("Enter the position where you want to delete the node.");
+            printf("Enter the position where you want to delete the node. ");
             scanf("%d" , &position);
             deleteAtPosition(position);
         }
     }
 
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n\n");
     scanf("%d" , &choiceOfUser);
 
     }
@@ -102,7 +107,7 @@ void display()
         printf("%d -> ", temp->value);
         temp = temp -> next;
     }
-    printf("NULL\nLength of the linkedlist is %d \n" , size);
+    printf("NULL\nSize of list =  %d \n\n" , size);
     
 }
 
@@ -202,6 +207,7 @@ int search(int value){
         position++;
         temp = temp -> next;
     }
+    return -1;
 }
 
 
