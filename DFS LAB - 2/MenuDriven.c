@@ -16,6 +16,7 @@ void insertAtPosition(int pos , int value);
 void deletetAtBeginning();
 void deleteAtLast();
 void deleteAtPosition(int pos);
+void reverse();
 int searchValue(int value);// returns the position of the value in the linkedlist.
 void main(){
     int choiceOfUser = 1;
@@ -30,11 +31,14 @@ void main(){
     head = node;
     tail = head;
     size++;
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Searching\n5 -> Quit");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n");
     scanf("%d" , &choiceOfUser);
     while(choiceOfUser <= 5){
-    if(choiceOfUser == 5){
+    if(choiceOfUser == 6){
         return;
+    }
+    else if (choiceOfUser == 5){
+        reverse();
     }
     else if(choiceOfUser == 4){
         printf("What is the value that you want to search? ->  ");
@@ -81,7 +85,7 @@ void main(){
         }
     }
 
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Searching\n5 -> Quit");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n");
     scanf("%d" , &choiceOfUser);
 
     }
@@ -96,6 +100,7 @@ void display()
         temp = temp -> next;
     }
     printf("NULL\nLength of the linkedlist is %d \n" , size);
+    
 }
 
 void insertAtBeginning(int value){
@@ -194,5 +199,22 @@ int search(int value){
         position++;
         temp = temp -> next;
     }
+}
+
+
+void reverse(){
+    struct node *present = head;
+    struct node * previous  = NULL;
+    struct node *nextnode = present -> next;
+    while(present != NULL){
+        present -> next = previous;
+        previous = present;
+        present = nextnode;
+        if(nextnode != NULL){
+            nextnode = nextnode -> next;
+        }
+    }
+    head = previous;
+    display();
 }
 
