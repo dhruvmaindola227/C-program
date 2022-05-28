@@ -43,8 +43,9 @@ void main(){
         bubbleSort(size - 1  , 0); 
         printf("Would you like to insert an element in a sorted list in a way that keeps it sorted?\nyes -> 1\nno -> 0\n");
         scanf("%d" , &nextChoice);
+        while(nextChoice < 2){
         if(nextChoice == 0){
-            
+            break;
         } else{
             printf("Enter the value for the new node");
             scanf("%d" , &value);
@@ -62,7 +63,7 @@ void main(){
             }else{
                 struct node *temp = head -> next;
                 int pos = 1;
-                while(temp != tail){
+                while(temp != NULL){
                     if(value >= temp -> value){
                         temp = temp -> next;
                         pos++;
@@ -76,8 +77,10 @@ void main(){
                 display();
                 }
             }
+            printf("Would you like to insert an element in a sorted list in a way that keeps it sorted?\nyes -> 1\nno -> 0\n");
+            scanf("%d" , &nextChoice);
         }
-    
+    }
     else if (choiceOfUser == 5){
         // reverse();
         recursiveReverse(head);
