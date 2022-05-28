@@ -58,7 +58,7 @@ void main(){
                 printf("\nnode inserted!\n");
                         printf("\nNew list : \n");
                         display();
-                        //
+                        
             }else{
                 struct node *temp = head -> next;
                 int pos = 1;
