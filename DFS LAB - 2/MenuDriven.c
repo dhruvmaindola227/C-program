@@ -9,7 +9,7 @@ struct node
 struct node *head , * node , * tail = NULL;
  //global pointers.
 int size = 0;
-void display(s);
+void display();
 void insertAtBeginning(int value);
 void insertAtLast(int value);
 void insertAtPosition(int pos , int value);
@@ -18,6 +18,8 @@ void deleteAtLast();
 void deleteAtPosition(int pos);
 void reverse();
 void recursiveReverse(struct node *currnode);
+void bubbleSort(int row , int col);
+struct node * getNode(int position); // returns the node at the specified position
 int searchValue(int value);// returns the position of the value in the linkedlist.
 void main(){
     int choiceOfUser = 1;
@@ -32,12 +34,49 @@ void main(){
     head = node;
     tail = head;
     size++;
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n\n");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Sort list\n7 -> Quit\n");
     scanf("%d" , &choiceOfUser);
-    while(choiceOfUser <= 5){
-    if(choiceOfUser == 6){
+    while(choiceOfUser <= 7){
+    if(choiceOfUser == 7){
         return;
-    }
+    }else if(choiceOfUser == 6){
+        bubbleSort(size - 1  , 0); 
+        printf("Would you like to insert an element in a sorted list in a way that keeps it sorted?\nyes -> 1\nno -> 0\n");
+        scanf("%d" , &nextChoice);
+        if(nextChoice == 0){
+            
+        } else{
+            printf("Enter the value for the new node");
+            scanf("%d" , &value);
+            if(value <= head -> value){
+                insertAtBeginning(value);
+                printf("\nnode inserted!\n");
+                        printf("\nNew list : \n");
+                        display();
+            }else if(value >= tail -> value){
+                insertAtLast(value);
+                printf("\nnode inserted!\n");
+                        printf("\nNew list : \n");
+                        display();
+            }else{
+                struct node *temp = head -> next;
+                int pos = 1;
+                while(temp != tail){
+                    if(value >= temp -> value){
+                        temp = temp -> next;
+                        pos++;
+                    }else{
+                        break;
+                    }
+                }
+                insertAtPosition(pos + 1, value);
+                printf("\nnode inserted!\n");
+                printf("\nNew list : \n");
+                display();
+                }
+            }
+        }
+    
     else if (choiceOfUser == 5){
         // reverse();
         recursiveReverse(head);
@@ -47,7 +86,7 @@ void main(){
         printf("What is the value that you want to search? ->  ");
         scanf("%d" , &valueToSearch);
         if(search(valueToSearch) != -1){
-        printf("The value %d was found at position number %d\n\n" , value , search(valueToSearch));
+        printf("The value %d was found at position number %d\n\n" , valueToSearch , search(valueToSearch));
         }else{
             printf("Element not found in the linked list!!!\n\n");
         }
@@ -93,7 +132,7 @@ void main(){
         }
     }
 
-    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Quit\n\n");
+    printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Reverse\n6 -> Sort list\n7 -> Quit\n\n");
     scanf("%d" , &choiceOfUser);
 
     }
@@ -244,4 +283,50 @@ void recursiveReverse(struct node *currnode){
     tail -> next = NULL;
 }
 
+
+void bubbleSort(int row , int col){
+struct node *left , *right , *prev;
+    if(row == 0 ){
+         printf("\n New Sorted list is\n");
+        display();
+        return;
+    }
+    if(col < row){
+        left = getNode(col);
+        right = getNode(col + 1);
+        if(left -> value > right -> value){
+            if(left == head){
+                head = right;
+                left -> next = right -> next;
+                right -> next = left;
+            }else if(right == tail){
+                prev = getNode(col - 1);
+                prev -> next = right;
+                tail = left;
+                left -> next = NULL;
+                right -> next = tail;
+            }
+            else{
+                prev = getNode(col - 1);
+                prev -> next = right;
+                left -> next = right -> next;
+                right -> next = left;
+            }
+        }
+        bubbleSort(row, col + 1);
+    }else{
+        bubbleSort(row - 1, 0);
+    }
+   
+    }
+
+struct node* getNode(int location){
+    struct node *temp = head;
+    for (int i = 0; i < location; i++)
+    {
+        temp = temp -> next;
+    }
+    return temp;
+
+}
 
