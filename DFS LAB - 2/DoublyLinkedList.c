@@ -146,7 +146,7 @@ void main(){
 
 
 void display()
-{
+{   printf("NULL <-> ");
     struct node *temp = head;
  while (temp != NULL){
         printf("%d <-> ", temp -> value);
@@ -322,7 +322,7 @@ struct node *left , *right , *prev;
 
 struct node* getNode(int location){
     struct node *temp = head;
-    for (int i = 0; i < location; i++)
+    for (int i = 1 ; i < location ; i++)
     {
         temp = temp -> next;
     }
