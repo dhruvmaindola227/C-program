@@ -296,26 +296,34 @@ struct node *left , *right , *prev;
         right = getNode(col + 1);
         if(left -> value > right -> value){
             if(left == head){
-                head = right;
+                right -> prev = NULL;
                 left -> next = right -> next;
+                right -> next -> prev = left;
                 right -> next = left;
+                left -> prev = right;
+                head = right;
             }else if(right == tail){
-                prev = getNode(col - 1);
-                prev -> next = right;
-                tail = left;
                 left -> next = NULL;
-                right -> next = tail;
+                left -> prev -> next = right;
+                tail = left;
+                right -> prev = left -> prev;
+                right -> next = left;
+                left -> prev = right;
             }
             else{
-                prev = getNode(col - 1);
-                prev -> next = right;
                 left -> next = right -> next;
+                right -> next -> prev = left;
+                left -> prev -> next = right;
+                right -> prev = left -> prev;
+                left -> prev = right;
                 right -> next = left;
             }
         }
         bubbleSort(row, col + 1);
+        
     }else{
         bubbleSort(row - 1, 0);
+        
     }
    
     }
