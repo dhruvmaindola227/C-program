@@ -73,7 +73,18 @@ void main(){
                         break;
                     }
                 }
+                if(pos + 1 == size){
+                    struct node *temp = tail -> prev;
+                    node = (struct node*) malloc(sizeof(struct node));
+                    node -> value = value;
+                    node -> prev = temp;
+                    node -> next = tail;
+                    tail -> prev = node;
+                    temp -> next = node;
+                    size++;
+                }else{
                 insertAtPosition(pos + 1, value);
+                }
                 printf("\nnode inserted!\n");
                 printf("\nNew list : \n");
                 display();
@@ -256,6 +267,7 @@ void reverse(){
     // struct node *last = nextnode;
         do {
         present -> next = previous;
+        present -> prev = nextnode;
         previous = present;
         present = nextnode;
         nextnode = nextnode -> next;
@@ -279,21 +291,30 @@ struct node *left , *right , *prev;
         if(left -> value > right -> value){
             if(left == head){
                 left -> next = right -> next;
+                right -> next -> prev = left;
                 right -> next = left;
+                left -> prev = right;
+                right -> prev = tail;
                 head = right;
                 tail -> next = head;
             }else if(right == tail){
-                prev = getNode(col - 1);
+                head -> prev = left;
                 left -> next = head;
+                prev = getNode(col - 1);
                 prev -> next = right;
+                right -> prev = prev;
                 right -> next = left;
+                left -> prev = right;
                 tail = left;
             }
             else{
                 prev = getNode(col - 1);
                 prev -> next = right;
+                right -> prev = prev;
                 left -> next = right -> next;
+                right -> next -> prev = left;
                 right -> next = left;
+                left -> prev = right;
             }
         }
         bubbleSort(row, col + 1);
