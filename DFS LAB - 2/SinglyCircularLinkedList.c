@@ -82,9 +82,9 @@ void main(){
         }
     }
     else if (choiceOfUser == 5){
-        // reverse();
-        recursiveReverse(head);
-        display();
+        reverse();
+        // recursiveReverse(head);
+        // display();
     }
     else if(choiceOfUser == 4){
         printf("What is the value that you want to search? ->  ");
@@ -151,7 +151,6 @@ void display()
         temp = temp -> next;
     }while (temp != head);
     printf("HEAD\nSize of list =  %d \n\n" , size);
-    
 }
 
 void insertAtBeginning(int value){
@@ -193,8 +192,8 @@ void insertAtPosition(int position , int value){
 
 void deleteAtBeginning(){
     tail -> next = head -> next;
-    head = head -> next;
     free(getNode(1));
+    head = tail -> next;
     size--;
 }
 
@@ -231,7 +230,7 @@ int search(int value){
         }
         position++;
         temp = temp -> next;
-    }while (temp != NULL);
+    }while (temp != head);
     return -1;
 }
 
@@ -240,18 +239,19 @@ void reverse(){
     if (size < 2) {
             return;
         }
-    struct node *present = head -> next;
-    struct node * previous  = head;
+    
+    struct node * previous  = tail;
+    struct node *present = head;
     struct node *nextnode = present -> next;
-    struct node *last = nextnode;
-          do {
+    // struct node *last = nextnode;
+        do {
         present -> next = previous;
         previous = present;
         present = nextnode;
         nextnode = nextnode -> next;
-    }while(nextnode != last);
-    tail = previous;
-    head = present;
+    }while(previous != tail);
+    tail = present;
+    head = previous;
     display();
 }
 
