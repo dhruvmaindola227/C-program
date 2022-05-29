@@ -40,7 +40,7 @@ void main(){
     if(choiceOfUser == 7){
         return;
     }else if(choiceOfUser == 6){
-        bubbleSort(size - 1  , 0); 
+        bubbleSort(size - 1 , 0); 
         printf("Would you like to insert an element in a sorted list in a way that keeps it sorted?\nyes -> 1\nno -> 0\n");
         scanf("%d" , &nextChoice);
         while(nextChoice < 2){
@@ -272,25 +272,26 @@ void recursiveReverse(struct node *currnode){
 
 void bubbleSort(int row , int col){
 struct node *left , *right , *prev;
-    if(row == 0 ){
-         printf("\n New Sorted list is\n");
+    if(row == 0){
+        printf("\n New Sorted list is\n");
         display();
         return;
     }
-    if(col < row){
+    if(col <= row){
         left = getNode(col);
         right = getNode(col + 1);
         if(left -> value > right -> value){
             if(left == head){
-                head = right;
                 left -> next = right -> next;
                 right -> next = left;
+                head = right;
+                tail -> next = head;
             }else if(right == tail){
                 prev = getNode(col - 1);
+                left -> next = head;
                 prev -> next = right;
+                right -> next = left;
                 tail = left;
-                left -> next = NULL;
-                right -> next = tail;
             }
             else{
                 prev = getNode(col - 1);
