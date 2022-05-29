@@ -255,20 +255,6 @@ void reverse(){
     display();
 }
 
-void recursiveReverse(struct node *currnode){
-    if (size < 2) {
-            return;
-        }
-    if(currnode == tail){
-        head = tail;
-        return;
-    }
-    recursiveReverse(currnode -> next);
-    tail -> next = currnode;
-    tail = currnode;
-    tail -> next = NULL;
-}
-
 
 void bubbleSort(int row , int col){
 struct node *left , *right , *prev;
