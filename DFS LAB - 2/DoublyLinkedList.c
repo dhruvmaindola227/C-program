@@ -291,7 +291,7 @@ struct node *left , *right , *prev;
         display();
         return;
     }
-    if(col < row){
+    if(col <= row){
         left = getNode(col);
         right = getNode(col + 1);
         if(left -> value > right -> value){
