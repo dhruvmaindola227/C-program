@@ -177,10 +177,10 @@ void insertAtPosition(int position , int value){
         insertAtBeginning(value);
         return;
     } 
-    if(position == size){
-        insertAtLast(value);
-        return;
-    }
+    // if(position == size){
+    //     insertAtLast(value);
+    //     return;
+    // }
 
     node = (struct node*) malloc(sizeof(struct node));
     node -> value = value;

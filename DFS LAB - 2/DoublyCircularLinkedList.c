@@ -267,7 +267,7 @@ void reverse(){
     // struct node *last = nextnode;
         do {
         present -> next = previous;
-        present -> prev = nextnode;
+        present -> prev = present;
         previous = present;
         present = nextnode;
         nextnode = nextnode -> next;
