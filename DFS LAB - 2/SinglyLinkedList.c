@@ -258,6 +258,7 @@ void reverse(){
     if (size < 2) {
             return;
         }
+        //asdjlasdn
     struct node *present = head;
     struct node * previous  = NULL;
     struct node *nextnode = present -> next;
