@@ -115,7 +115,7 @@ void enqueueFront(int value){
         queue[front--] = value;
     }
 }
-
+//
 int dequeueRear(){
     if(front == -1 && rear == -1){
         printf("Queue underflow!");
