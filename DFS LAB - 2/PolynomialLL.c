@@ -5,7 +5,7 @@ struct node {
     struct node *next;
 };
 int size = 0;
-struct node *head , *tail , *newnode = NULL;\
+struct node *head , *tail , *newnode = NULL;
 struct node * add (struct node *head1 , struct node *head2);
 struct node * subtract (struct node *head1 , struct node *head2);
 struct node * multiply (struct node *head1 , struct node *head2);
@@ -15,7 +15,7 @@ void display();
 void insertAtBeginning(int coefficient , int power);
 void insertAtLast(int value);
 void insertAtPosition(int pos , int value);
-//dndfjkhslkjd
+
 
 
 void main(){
@@ -74,7 +74,7 @@ void insertSorted(int coefficient , int power){
         if(power > head -> power){
             insertAtBeginning(coefficient , power);
         } else{
-            while(power > temp -> power && temp -> next != NULL){
+            while(power < temp -> power && temp -> next != NULL){
                 temp = temp -> next;
             }
             newnode = (struct node*) malloc(sizeof(struct node));
@@ -97,4 +97,14 @@ void insertAtBeginning(int coefficient , int power){
     newnode -> next = head;
     head = newnode;
     size++;
+}
+
+struct node* getNode(int location){
+    struct node *temp = head;
+    for (int i = 1; i < location; i++)
+    {
+        temp = temp -> next;
+    }
+    return temp;
+
 }
