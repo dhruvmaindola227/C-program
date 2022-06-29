@@ -18,7 +18,7 @@ void insertAtPosition(int pos , int value);
 //dndfjkhslkjd
 
 
-void main(){//
+void main(){
     int cofficient , power , choiceForAddingTerms  = 1;
     newnode = (struct node*)malloc(sizeof(struct node)); 
     newnode -> next = NULL;
