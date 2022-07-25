@@ -66,9 +66,7 @@ void main(){
             scanf("%d" , &value);
             insertAtLast(value);
         }
-        else{
-           
-        }
+
     }
     else{
         printf("Press 1 for deleting a node at beginning\nPress 2 for deleting a node at ending\nPress 3 for deleting a node at a particular index  ");
@@ -79,9 +77,7 @@ void main(){
         else if(nextChoice == 2){
             deleteAtLast();
         }
-        else{
-           
-        }
+    
     }
 
     printf("What do you want to do?\n1 -> Insertion\n2 -> Deletion\n3 -> Display\n4 -> Search\n5 -> Quit\n\n");

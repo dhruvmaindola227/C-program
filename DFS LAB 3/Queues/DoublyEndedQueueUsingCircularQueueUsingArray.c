@@ -21,10 +21,10 @@ void main(){
         if(userChoice == 1){
             printf("Enter the value for the element...\n");
             scanf("%d" , &value);
-            enqueueRear(value);
+            enqueueFront(value);
         }
         else if(userChoice == 2){
-            dequeueFront();
+            dequeueRear();
         }
         else if(userChoice == 3){
             display();
