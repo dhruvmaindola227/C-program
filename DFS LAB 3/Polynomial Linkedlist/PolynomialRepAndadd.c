@@ -34,7 +34,7 @@ void createPoly(struct Node** poly)
 
 void disPoly(struct Node* poly)
 {
-	printf("\n\nPolynomial expression is: ");
+	printf("\nPolynomial expression is: ");
 	while(poly != NULL)
 	{
 		printf("%dX^%d", poly->coef, poly->pow);
@@ -108,10 +108,10 @@ int main()
 	struct Node* result = NULL;
 
 	
-	printf("\nEnter the First polynomial:\n");
+	printf("\nEnter the First polynomial:");
 	createPoly(&first);
 	disPoly(first);
-	printf("\nEnter the Second polynomial:\n");
+	printf("\nEnter the Second polynomial:");
 	createPoly(&second);
 	disPoly(second);
 	addPoly(&result, first, second);
