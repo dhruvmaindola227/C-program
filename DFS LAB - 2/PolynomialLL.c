@@ -1,110 +1,122 @@
 #include<stdio.h>
-struct node {
-    int coefficient;
-    int power;
-    struct node *next;
-};
-int size = 0;
-struct node *head , *tail , *newnode = NULL;
-struct node * add (struct node *head1 , struct node *head2);
-struct node * subtract (struct node *head1 , struct node *head2);
-struct node * multiply (struct node *head1 , struct node *head2);
-struct node * getNode(int position);
-void insertSorted(int coefficient , int power);
-void display();
-void insertAtBeginning(int coefficient , int power);
-void insertAtLast(int value);
-void insertAtPosition(int pos , int value);
+#include<stdlib.h>
 
-
-
-void main(){
-    int cofficient , power , choiceForAddingTerms  = 1;
-    newnode = (struct node*)malloc(sizeof(struct node)); 
-    newnode -> next = NULL;
-    printf("Lets start creating the polynomial....\nVariable will be x , just give us the coefficients and powers.\n");
-    printf("Enter the coefficient\n");
-    scanf("%d" , &cofficient);
-    newnode -> coefficient = cofficient;
-    printf("\nNow enter the power of the variable x which will have the coefficient %d\n" , cofficient);
-    scanf("%d" , &power);
-    newnode -> power = power;
-    head = newnode;
-    tail = newnode;
-    size++;
-    printf("Press 1 -> To add a new term to the polynomial\nPress 2 -> To start performing operations\nPress 3 -> To see the polynomial you have created up until now.\n");
-    scanf("%d" , &choiceForAddingTerms);
-    while (choiceForAddingTerms <= 3)
-    {   if(!(choiceForAddingTerms > 0)){ //edge case for input.
-            printf("Invalid input!");
-            return ;
-        }   
-        else if(choiceForAddingTerms == 3){
-            display();
-        } else if (choiceForAddingTerms == 2){
-            break;
-        } else if(choiceForAddingTerms == 1){
-            printf("Enter the coefficient\n");
-            scanf("%d" , &cofficient);
-            printf("\nNow enter the power of the variable x which will have the coefficient %d\n" , cofficient);
-            scanf("%d" , &power);
-            insertSorted(cofficient , power);
-            
-        }  
-        printf("Press 1 -> To add a new term to the polynomial\nPress 2 -> To start performing operations\nPress 3 -> To see the polynomial you have created up until now.\n");
-        scanf("%d" , &choiceForAddingTerms);
-    }
-    
-}
-
-void display()
+struct Node
 {
-    struct node *temp = head;
- while (temp != NULL){
-        printf("%dx^%d -> ", temp -> coefficient , temp -> power);
-        temp = temp -> next;
-    }
-    printf("NULL\nSize of list =  %d \n\n" , size);
-    
+	int coef;
+	int pow;
+	struct Node* next;
+};
+
+void createPoly(struct Node** poly)
+{
+	int coef, exp, cont;
+	struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+	*poly = temp;
+	do{
+		printf("\n Coeffecient: ");
+		scanf("%d", &coef);
+		printf("\n Exponent: ");
+		scanf("%d", &exp);
+		temp->coef = coef;
+		temp->pow = exp;
+		temp-> next = NULL;
+		printf("\nHave more terms? 1 for y and 0 for no: ");
+		scanf("%d", &cont);
+		if(cont==1)
+		{
+			temp->next = (struct Node*)malloc(sizeof(struct Node));
+			temp = temp->next;
+			temp->next = NULL;
+		}
+	}while(cont!=0);	
 }
 
-void insertSorted(int coefficient , int power){
-    struct node *temp = head;
-    if(head -> next == NULL){
-        if(power > head -> power){
-            insertAtBeginning(coefficient , power);
-        } else{
-            while(power < temp -> power && temp -> next != NULL){
-                temp = temp -> next;
-            }
-            newnode = (struct node*) malloc(sizeof(struct node));
-            newnode -> next = NULL;
-            newnode -> power = power;
-            newnode -> coefficient = coefficient;
-            temp -> next = newnode;
-            if(temp -> next == NULL){
-                tail = newnode;
-            }
-
-        }
-    }
+void disPoly(struct Node* poly)
+{
+	printf("\n\nPolynomial expression is: ");
+	while(poly != NULL)
+	{
+		printf("%dX^%d", poly->coef, poly->pow);
+		poly = poly->next;
+		if(poly != NULL)
+			printf("+");
+	}
 }
 
-void insertAtBeginning(int coefficient , int power){
-    newnode = (struct node*) malloc(sizeof(struct node));
-    newnode -> coefficient = coefficient;
-    newnode -> power = power;
-    newnode -> next = head;
-    head = newnode;
-    size++;
+void addPoly(struct Node** result, struct Node* first, struct Node* second)
+{
+ 	struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+ 	temp->next = NULL;
+ 	*result = temp;
+ 	while(first!=NULL && second!=NULL)
+ 	{
+ 		if(first->pow > second->pow)
+ 		{
+ 			temp->coef = first->coef;
+ 			temp->pow = first->pow;
+ 			first = first->next;
+ 		}
+ 		else if(first->pow < second->pow)
+ 		{
+ 			temp->coef = second->coef;
+ 			temp->pow = second->pow;
+ 			second = second->next;
+ 		}
+ 		else
+ 		{
+ 			temp->coef = first->coef + second->coef;
+ 			temp->pow = first->pow;
+ 			first = first->next;
+ 			second = second->next;
+ 		}
+
+ 		if(first!=NULL && second!=NULL)
+ 		{
+ 			temp->next = (struct Node*)malloc(sizeof(struct Node));
+ 			temp = temp->next;
+ 			temp->next = NULL;
+ 		}
+ 	}
+ 	while(first!=NULL || second!=NULL)
+ 	{
+ 		temp->next = (struct Node*)malloc(sizeof(struct Node));
+ 		temp = temp->next;
+ 		temp->next = NULL;
+ 			
+ 		if(first)
+ 		{
+ 			temp->coef = first->coef;
+ 			temp->pow = first->pow;
+ 			first = first->next;
+ 		}
+
+ 		else if(second)
+ 		{
+ 			temp->coef = second->coef;
+ 			temp->pow = second->pow;
+ 			second = second->next;
+ 		}
+ 	}
 }
 
-struct node* getNode(int location){
-    struct node *temp = head;
-    for (int i = 1; i < location; i++)
-    {
-        temp = temp -> next;
-    }
-    return temp;
+int main()
+{
 
+	struct Node* first = NULL;
+	struct Node* second = NULL;
+	struct Node* result = NULL;
+
+	
+	printf("\nEnter the First polynomial:\n");
+	createPoly(&first);
+	disPoly(first);
+	printf("\nEnter the Second polynomial:\n");
+	createPoly(&second);
+	disPoly(second);
+	addPoly(&result, first, second);
+
+    printf("\nThe resultant ");
+	disPoly(result);
+	return 0;
 }
