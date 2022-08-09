@@ -45,7 +45,7 @@ void enqueue(int value){
         printf("Queue overflow!");
         return;
     }
-    else if(rear == -1 & front == -1){    
+    else if(rear == -1 && front == -1){    
         front = 0;
         rear = 0;
         queue[rear] = value;
