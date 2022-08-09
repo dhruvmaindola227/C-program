@@ -1,7 +1,7 @@
 #include<stdio.h>
 //COUNT SORT.
 int main(){
-    int arr[] = {5,5,4,3,2}; //{0,1,1,1,1,1}
+    int arr[] = {5,4,3,2,1}; //{0,1,1,1,1,1}
     int freqArr[6]={0};
     int sumArr[6]={0}; 
     int outputArr[5];
@@ -41,10 +41,16 @@ int main(){
             outputArr[sumArr[arr[i]]]=arr[i];
         }
     //iss loop ke baad , original array ka sorted version output array me hoga.
+    printf("original array -> [ ");
 
     for(i=0;i<5;i++){
-        printf("%d\t",outputArr[i]);
+        printf("%d ",arr[i]);
     }
+    printf(" ]  sorted array -> [ ");
+    for(i=0;i<5;i++){
+        printf("%d ",outputArr[i]);
+    }
+    printf("]");
     return 0;
 }
 
